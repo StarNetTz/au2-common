@@ -1,0 +1,33 @@
+{
+  "name": "@starnetbih/au2-common",
+  "description": "Common constructs in Starnet aurelia 2 applications",
+  "version": "0.1.2",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src/**/*.ts",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "???"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@aurelia/kernel": "latest",
+    "@aurelia/fetch-client": "latest"
+  },
+  "devDependencies": {
+    "@aurelia/testing": "latest"
+  },
+  "scripts": {
+    "lint:js": "eslint src test --ext .js,.ts",
+    "build": "rimraf dist && rollup -c",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  }
+}
