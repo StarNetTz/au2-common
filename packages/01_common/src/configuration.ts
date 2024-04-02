@@ -1,37 +1,25 @@
-import { IHttpClient } from "@aurelia/fetch-client";
-import { DI, newInstanceOf } from '@aurelia/kernel';
+import { AppTask } from "aurelia";
+import { IContainer, Registration } from '@aurelia/kernel';
+import { IAU2Config, AU2Config } from './au2config';
+import { IWaiter, Waiter } from './waiter';
+import { ILooper, Looper } from './looper';
+import { ITimeProvider, TimeProvider } from './timeProvider';
 
-export const IAU2Config = DI.createInterface<IAU2Config>('IAU2Config');
+export const StarnetCommonsPlugin = create();
 
-export interface IAU2Config {
-    config: string;
-    getConfig(): void;
-    getValue(key: string): string;
-}
-
-export class AU2Config implements IAU2Config {
-
-    config: string;
-
-    constructor(@newInstanceOf(IHttpClient) readonly http: IHttpClient) {
-    }
-
-    async getConfig() {
-        const resp = await this.http.get('config/config.json');
-        this.config = await resp.json();
-    }
-
-    getValue(key: string) {
-        const splitKey = key.split('.');
-        let currentObject = this.config;
-    
-        splitKey.forEach(key => {
-          if (currentObject[key]) {
-            currentObject = currentObject[key];
-          } else {
-            throw new Error('Key ' + key + ' not found');
-          }
-        });
-        return currentObject;
-    }
+function create() {
+	return {
+		register(container: IContainer): IContainer {
+			return container.register(
+				Registration.singleton(IAU2Config, AU2Config),
+				Registration.transient(IWaiter, Waiter),
+				Registration.transient(ILooper, Looper),
+				Registration.transient(ITimeProvider, TimeProvider),
+				AppTask.hydrating(IContainer, async container => {
+					const cfg = container.get(IAU2Config);
+					await cfg.getConfig();
+				})
+			);
+		}
+	};
 }

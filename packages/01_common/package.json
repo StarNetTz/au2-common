@@ -1,7 +1,7 @@
 {
   "name": "@starnetbih/au2-common",
   "description": "Common constructs in Starnet aurelia 2 applications",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/index.d.ts",
@@ -18,10 +18,12 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "@aurelia/kernel": "latest",
-    "@aurelia/fetch-client": "latest"
+   
   },
   "devDependencies": {
+    "aurelia": "latest",
+    "@aurelia/kernel": "latest",
+    "@aurelia/fetch-client": "latest",
     "@aurelia/testing": "latest"
   },
   "scripts": {
