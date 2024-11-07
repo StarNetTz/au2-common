@@ -1,8 +1,5 @@
 {
 	"name": "@starnetbih/aurelia",
-	"workspaces": [
-		"packages/**"
-	],
 	"devDependencies": {
 		"@commitlint/cli": "17.5.1",
 		"@rollup/plugin-alias": "5.1.0",
