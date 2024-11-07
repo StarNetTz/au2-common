@@ -1,7 +1,7 @@
 {
   "name": "@starnetbih/au2-common",
   "description": "Common constructs in Starnet aurelia 2 applications",
-  "version": "0.1.4",
+  "version": "2.",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/index.d.ts",
